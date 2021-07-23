@@ -22,20 +22,25 @@ const tenkijp = require("./weather/tenkijp.js");
 const tyhoon = require("./typhoon/tenkijp.js");
 
 // const slack = require('./slack');
+const initDI = require("./di/browserModule");
+const scrapingService = require("./di/ScrapingService");
 
 (async () => {
   console.group("main start");
-  await updateAnneiList();
-  await updateAnneiDetail();
-  await YkfList();
-  await ykfTime();
-  await ykfDetail();
-  await tyhoon();
-  await yahoo();
-  await topPort();
-  await topCompany();
-  await tenkijp();
+  await initDI();
+  // await updateAnneiList();
+
+  // await updateAnneiDetail();
+  // await YkfList();
+  // await ykfTime();
+  // await ykfDetail();
+  // await tyhoon();
+  // await yahoo();
+  // await topPort();
+  // await topCompany();
+  // await tenkijp();
   await firebase.database().goOffline();
+  await scrapingService();
   console.groupEnd()
   console.log("main finish");
 })();
